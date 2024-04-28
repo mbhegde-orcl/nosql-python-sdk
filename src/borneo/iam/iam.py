@@ -451,7 +451,7 @@ class SignatureProvider(AuthorizationProvider):
                     self._provider.refresh_security_token()
                     prov = self._provider
                     if isinstance(prov, OkeWorkloadIdentityResourcePrincipalSigner):
-                        print(f"refresh security token = {prov.get_security_token()}")
+                        print(f"refresh security token = {prov.get_security_token()}, provider={id}")
                 self.get_signature_details_internal()
                 return
             except Exception as e:
@@ -488,3 +488,4 @@ class SignatureProvider(AuthorizationProvider):
             self._timer = None
         self._timer = Timer(self._refresh_interval_s, self._refresh_task)
         self._timer.start()
+        print(f"schedule_refresh, signature_provider={id(self)}, timer={id(self._timer)}")

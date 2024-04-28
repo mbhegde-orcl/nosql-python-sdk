@@ -462,6 +462,7 @@ class SignatureProvider(AuthorizationProvider):
                 # request. If that operation fails, it will be reported to
                 # the user as an exception
                 if not error_logged:
+                    print(str(e))
                     self._logutils.log_error(
                         'Unable to refresh cached request signature, ' + str(e))
                     error_logged = True
@@ -488,4 +489,4 @@ class SignatureProvider(AuthorizationProvider):
             self._timer = None
         self._timer = Timer(self._refresh_interval_s, self._refresh_task)
         self._timer.start()
-        print(f"schedule_refresh, signature_provider={id(self)}, timer={id(self._timer)}")
+        print(f"schedule_refresh, signature_provider={id(self)}, timer={id(self._timer)}, interval={self._refresh_interval_s}")

@@ -451,7 +451,7 @@ class SignatureProvider(AuthorizationProvider):
                     self._provider.refresh_security_token()
                     prov = self._provider
                     if isinstance(prov, OkeWorkloadIdentityResourcePrincipalSigner):
-                        print(f"refresh security token = {prov.get_security_token()}, provider={id}")
+                        print(f"refresh security token = {prov.get_security_token()}, provider={id(self._provider)}, signatureprovider={id(self)}")
                 self.get_signature_details_internal()
                 return
             except Exception as e:
